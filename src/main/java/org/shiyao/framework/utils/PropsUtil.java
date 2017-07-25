@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * A util class help dealing with different properties.
+ */
 public class PropsUtil {
     public static Properties loadProps(String fileName) {
         Properties props = null;
@@ -32,4 +35,31 @@ public class PropsUtil {
 
         return props;
     }
+
+    /**
+     * Obtain String property
+     * @param props
+     * @param key
+     * @return
+     */
+    public static String getString(Properties props, String key) {
+        return getString(props, "");
+    }
+
+    /**
+     * Obtain String property with default value
+     * @param props
+     * @param key
+     * @param defaultValue
+     * @return
+     */
+    public static String getString(Properties props, String key, String defaultValue) {
+        if (props.contains(key)) {
+            return props.getProperty(key);
+        } else {
+            return defaultValue;
+        }
+    }
+
+
 }
