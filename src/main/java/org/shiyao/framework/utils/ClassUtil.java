@@ -22,6 +22,7 @@ public final class ClassUtil {
     private static final String PACKAGE_DELIMIER = ".";
     private static final String PATH_DELIMIBER = "/";
     private static final String SPEC_DELIMITER = "%20";
+    private static final String CLASS_SUFFIX = ".class";
 
     public enum Protocols {
         JAR("jar"),
@@ -86,7 +87,7 @@ public final class ClassUtil {
                                     JarEntry jarEntry = jarEntries.nextElement();
                                     String jarEntryName = jarEntry.getName();
 
-                                    if (jarEntryName.endsWith(".class")) {
+                                    if (jarEntryName.endsWith(CLASS_SUFFIX)) {
                                         String className = jarEntryName.substring(0,
                                                 jarEntryName.lastIndexOf(".")).replaceAll("/", ".");
                                         doAddClass(classSet, className);
