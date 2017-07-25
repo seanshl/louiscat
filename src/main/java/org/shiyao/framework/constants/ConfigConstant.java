@@ -1,4 +1,4 @@
-package org.shiyao.framework;
+package org.shiyao.framework.constants;
 
 public interface ConfigConstant {
     String CONFIG_FILE = "louiscat.properties";

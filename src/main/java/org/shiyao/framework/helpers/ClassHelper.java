@@ -1,5 +1,10 @@
 package org.shiyao.framework.helpers;
 
+import org.shiyao.framework.annotation.Controller;
+import org.shiyao.framework.annotation.Service;
+import org.shiyao.framework.utils.ClassUtil;
+
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -7,6 +12,41 @@ public final class ClassHelper {
     private static final Set<Class<?>> CLASS_SET;
 
     static {
-        String basePackage = ConfigUti
+        String basePackage = ConfigHelper.getAppBasePackage();
+        CLASS_SET = ClassUtil.getClassSet(basePackage);
+    }
+
+    public static Set<Class<?>> getClassSet() {
+        return CLASS_SET;
+    }
+
+    public static Set<Class<?>> getServiceClassSet() {
+        Set<Class<?>> classSet = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            if (cls.isAnnotationPresent(Service.class)) {
+                classSet.add(cls);
+            }
+        }
+
+        return classSet;
+    }
+
+    public static Set<Class<?>> getControllerClassSet() {
+        Set<Class<?>> classSet = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            if (cls.isAnnotationPresent(Controller.class)) {
+                classSet.add(cls);
+            }
+        }
+
+        return classSet;
+    }
+
+    public static Set<Class<?>> getBeanClassSet() {
+        Set<Class<?>> beanClassSet = new HashSet<>();
+        beanClassSet.addAll(getServiceClassSet());
+        beanClassSet.addAll(getControllerClassSet());
+
+        return beanClassSet;
     }
 }
