@@ -14,7 +14,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * Load all classed under the base package, eg, classes using some annotation, or implementing some interface
+ * Load all classed under the base package, eg, classes using some annotation, or implementing some interface.
+ * It is a bottom layer for ClassHelper
  */
 public final class ClassUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(ClassUtil.class);
@@ -40,7 +41,7 @@ public final class ClassUtil {
     }
 
     /**
-     * Load class
+     * Load class for a particular class name.
      * @param className
      * @param isInitialized
      * @return
@@ -57,6 +58,11 @@ public final class ClassUtil {
         return cls;
     }
 
+    /**
+     * Load all classes, including .class or .java into classSet under a specific package name.
+     * @param packageName
+     * @return
+     */
     public static Set<Class<?>> getClassSet(String packageName) {
         Set<Class<?>> classSet = new HashSet<Class<?>>();
         if (StringUtils.isBlank(packageName)) {

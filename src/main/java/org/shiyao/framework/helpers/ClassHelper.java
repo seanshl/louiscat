@@ -7,7 +7,10 @@ import org.shiyao.framework.utils.ClassUtil;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * ClassHelper provides a set of methods helping the client to fetch different types of class.
+ * It is s layer built on ClassUtil
+ */
 public final class ClassHelper {
     private static final Set<Class<?>> CLASS_SET;
 
@@ -20,6 +23,10 @@ public final class ClassHelper {
         return CLASS_SET;
     }
 
+    /**
+     * Retrieve all Service classes under the base package.
+     * @return
+     */
     public static Set<Class<?>> getServiceClassSet() {
         Set<Class<?>> classSet = new HashSet<>();
         for (Class<?> cls : CLASS_SET) {
@@ -31,6 +38,10 @@ public final class ClassHelper {
         return classSet;
     }
 
+    /**
+     * Retrieve all Controller classes under the base package.
+     * @return
+     */
     public static Set<Class<?>> getControllerClassSet() {
         Set<Class<?>> classSet = new HashSet<>();
         for (Class<?> cls : CLASS_SET) {
@@ -42,6 +53,10 @@ public final class ClassHelper {
         return classSet;
     }
 
+    /**
+     * Retrieve all classes under the base package.
+     * @return
+     */
     public static Set<Class<?>> getBeanClassSet() {
         Set<Class<?>> beanClassSet = new HashSet<>();
         beanClassSet.addAll(getServiceClassSet());
