@@ -3,6 +3,8 @@ package org.shiyao.framework.helpers;
 import org.shiyao.framework.annotation.Controller;
 import org.shiyao.framework.annotation.Service;
 import org.shiyao.framework.utils.ClassUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,10 +15,13 @@ import java.util.Set;
  */
 public final class ClassHelper {
     private static final Set<Class<?>> CLASS_SET;
+    private static Logger LOGGER = LoggerFactory.getLogger(ClassHelper.class);
 
     static {
+        LOGGER.info("Begin loading ClassHelper..");
         String basePackage = ConfigHelper.getAppBasePackage();
         CLASS_SET = ClassUtil.getClassSet(basePackage);
+        LOGGER.info("End loading ClassHelper...");
     }
 
     public static Set<Class<?>> getClassSet() {
